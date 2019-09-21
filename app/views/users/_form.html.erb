@@ -1,42 +1,154 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
+<%= form_for @user do |f| %>
+
+  <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-        <% user.errors.full_messages.each do |message| %>
+        <% @user.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
-  </div>
+  <p>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </p>
 
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
+  <p>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </p>
 
-  <div class="field">
-    <%= form.label :email_address %>
-    <%= form.text_field :email_address %>
-  </div>
+  <p>
+    <%= f.label :email_address %>
+    <%= f.text_field :email_address %>
+  </p>
 
-  <div class="field">
-    <%= form.label :date_of_birth %>
-    <%= form.date_select :date_of_birth %>
-  </div>
+  <p>
+    <%= f.label :date_of_birth %>
+    <%= f.date_select :date_of_birth,
+                      include_blank: true,
+                      start_year: Date.today.year,
+                      end_year: Date.today.year - 150%>
+  </p>
 
-  <div class="field">
-    <%= form.label :phone_number %>
-    <%= form.text_field :phone_number %>
-  </div>
+  <p>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number %>
+  </p>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= f.fields_for :address do |userAddress| %>
+    <strong>Address</strong>
+
+    <p>
+      <%= userAddress.label :street %>
+      <%= userAddress.text_field :street %>
+    </p>
+
+    <p>
+      <%= userAddress.label :city %>
+      <%= userAddress.text_field :city %>
+    </p>
+
+    <p>
+      <%= userAddress.label :zip_code %>
+      <%= userAddress.text_field :zip_code%>
+    </p>
+
+    <p>
+      <%= userAddress.label :country %>
+      <%= userAddress.text_field :country %>
+    </p>
+
+  <% end %>
+
+  <%= f.fields_for :company do |company| %>
+    <strong> Company </strong>
+
+    <p>
+      <%= company.label :name %>
+      <%= company.text_field :name %>
+    </p>
+
+    <%= company.fields_for :address do |companyAddress| %>
+
+      <strong>Address</strong>
+
+      <p>
+        <%= companyAddress.label :street %>
+        <%= companyAddress.text_field :street %>
+      </p>
+
+      <p>
+        <%= companyAddress.label :city %>
+        <%= companyAddress.text_field :city %>
+      </p>
+
+      <p>
+        <%= companyAddress.label :zip_code %>
+        <%= companyAddress.text_field :zip_code %>
+      </p>
+
+      <p>
+        <%= companyAddress.label :country %>
+        <%= companyAddress.text_field :country %>
+      </p>
+    <% end %>
+
+  <% end %>
+  <p><%= f.submit "Register" %></p>
 <% end %>
+
+
+
+
+<%#= form_with(model: user, local: true) do |form| %>
+  <%# if user.errors.any? %>
+<!--    <div id="error_explanation">-->
+<!--      <h2><%#= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>-->
+
+<!--      <ul>-->
+        <%# user.errors.full_messages.each do |message| %>
+<!--          <li><%#= message %></li>-->
+        <%# end %>
+<!--      </ul>-->
+<!--    </div>-->
+  <%# end %>
+
+<!--  <div class="field">-->
+    <%#= form.label :first_name %>
+    <%#= form.text_field :first_name %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= form.label :last_name %>
+    <%#= form.text_field :last_name %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= form.label :email_address %>
+    <%#= form.text_field :email_address %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= form.label :date_of_birth %>
+    <%#= form.date_select :date_of_birth %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= form.label :phone_number %>
+    <%#= form.text_field :phone_number %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= form.label :street %>
+    <%#= form.text_field :street %>
+<!--  </div>-->
+
+<!--  <div class="actions">-->
+    <%#= form.submit %>
+<!--  </div>-->
+<%# end %>

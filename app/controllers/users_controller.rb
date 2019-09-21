@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.all.includes(:address, {company: :address})
   end
 
   # GET /users/1
@@ -15,6 +15,8 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @user.build_address
+    @user.build_company.build_address
   end
 
   # GET /users/1/edit
@@ -63,12 +65,16 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email_address, :date_of_birth, :phone_number)
-    end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email_address,
+                                 :date_of_birth, :phone_number,
+                                 address_attributes: [ :street, :city, :zip_code, :country],
+                                 company_attributes: [:name,
+                                                      address_attributes: [:street, :city, :zip_code, :country]])
+  end
 end

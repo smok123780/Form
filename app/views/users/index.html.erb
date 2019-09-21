@@ -10,6 +10,15 @@
       <th>Email address</th>
       <th>Date of birth</th>
       <th>Phone number</th>
+      <th>Street</th>
+      <th>City</th>
+      <th>Zip code</th>
+      <th>Country</th>
+      <th>Company name</th>
+      <th>Company street</th>
+      <th>Company city</th>
+      <th>Company zip code</th>
+      <th>Company Country</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +31,15 @@
         <td><%= user.email_address %></td>
         <td><%= user.date_of_birth %></td>
         <td><%= user.phone_number %></td>
+        <td><%= user.address.street %></td>
+        <td><%= user.address.city %></td>
+        <td><%= user.address.zip_code %></td>
+        <td><%= user.address.country %></td>
+        <td><%= user.company.name %></td>
+        <td><%= user.company.address.street %></td>
+        <td><%= user.company.address.city %></td>
+        <td><%= user.company.address.zip_code %></td>
+        <td><%= user.company.address.country %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
