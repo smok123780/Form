@@ -11,8 +11,7 @@ class User < ApplicationRecord
   validates_presence_of :email_address
   validates_format_of :email_address, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   validates :date_of_birth, timeliness: {type: :datetime}, allow_blank: true
-  validates :phone_number,
-            phone: { allow_blank: true }
+  validates :phone_number, phone: { allow_blank: true }
             # telephone_number: { country: proc { |record| record.address.country } },
             #                allow_blank: true, if: proc { |record| !record.address.country.blank? }
   validates_with DateOfBirthValidator
