@@ -7,6 +7,6 @@ class Address < ApplicationRecord
   validates :zip_code, zipcode: { country_code_attribute: :country }, allow_blank: true
 
   def user?
-    !user_id.present?
+    user_id.present?
   end
 end
