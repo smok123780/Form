@@ -52,3 +52,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'countries', '~> 3.0'
+gem 'telephone_number', '~> 1.4', '>= 1.4.1'
+gem 'validates_zipcode', '~> 0.2.2'

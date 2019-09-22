@@ -21,15 +21,28 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user.build_address if @user.address.nil?
+    @user.company.build_address if @user.company.address.nil?
   end
 
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    # @user = User.create(user_params)
+    # @user.build_address if @user.address.nil?
+    # @user.company.build_address if @user.company.address.nil?
+    # if not @user.id.nil?
+    #   redirect_to users_path
+    # else
+    #   render :new
+    # end
+
+    @user = User.create(user_params)
+    @user.build_address if @user.address.nil?
+    @user.company.build_address if @user.company.address.nil?
 
     respond_to do |format|
-      if @user.save
+      if !@user.id.nil?#@user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
