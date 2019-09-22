@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class DateOfBirthValidator < ActiveModel::Validator
   def validate(record)
     date = record.date_of_birth
+
     return if date.nil?
 
     unless date < Date.today

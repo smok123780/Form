@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -46,6 +47,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
@@ -54,6 +56,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'countries', '~> 3.0'
-gem 'telephone_number', '~> 1.4', '>= 1.4.1'
+#gem 'telephone_number', '~> 1.4', '>= 1.4.1'
 gem 'validates_zipcode', '~> 0.2.2'
-gem 'rspec', '~> 3.5'
+gem 'validates_timeliness', '~> 5.0.0.alpha3'
+#gem 'phone', '~> 1.2', '>= 1.2.3'
+gem 'phonelib'
