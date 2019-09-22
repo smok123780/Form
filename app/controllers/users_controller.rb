@@ -28,15 +28,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    # @user = User.create(user_params)
-    # @user.build_address if @user.address.nil?
-    # @user.company.build_address if @user.company.address.nil?
-    # if not @user.id.nil?
-    #   redirect_to users_path
-    # else
-    #   render :new
-    # end
-
     @user = User.create(user_params)
     @user.build_address if @user.address.nil?
     @user.company.build_address if @user.company.address.nil?
